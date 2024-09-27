@@ -61,9 +61,18 @@ class Calculator:
             button8.destroy()
             button9.destroy()
             button0.destroy()
+        def Standard():
+            self.window.resizable(width=False, height=False)
+            self.window.geometry("480x624+20+20")
+            self.create_clear_button()
+            self.create_equals_button()
+            self.create_square_button()
+            self.create_sqrt_button()
+            destroy()
+
         def Scientific():
             self.window.resizable(width=False, height=False)
-            self.window.geometry("990x624+20+20")
+            self.window.geometry("700x624+20+20")
             self.create_mod_button()
             self.create_cos_button()
             self.create_sin_button()
@@ -79,20 +88,12 @@ class Calculator:
             self.create_square_button()
             self.create_sqrt_button()
 
-        def Standard():
-            self.window.resizable(width=False, height=False)
-            self.window.geometry("480x624+20+20")
-            self.create_clear_button()
-            self.create_equals_button()
-            self.create_square_button()
-            self.create_sqrt_button()
-            destroy()
 
 
         menubar = tk.Menu()
         self.window.config(menu=menubar)
         filemenu = tk.Menu(menubar, tearoff=0)
-        menubar.add_cascade(label = "File", menu=filemenu)
+        menubar.add_cascade(label = "Menu", menu=filemenu)
         filemenu.add_command(label = "Standard", command =Standard)
 
         filemenu.add_command(label = "Scientific", command = Scientific)
@@ -137,7 +138,7 @@ class Calculator:
 
     def create_digit_buttons(self):
         for digit, grid_value in self.digits.items():
-            button = tk.Button(self.buttons_frame, text=str(digit), bg=WHITE, fg=LABEL_COLOR, font=DIGITS_FONT_STYLE,
+            button = tk.Button(self.buttons_frame, text=str(digit), bg=WHITE, fg=LABEL_COLOR, font=DIGITS_FONT_STYLE,padx=28,
                                borderwidth=0, command=lambda x=digit: self.add_to_expression(x))
             button.grid(row=grid_value[0], column=grid_value[1], sticky=tk.NSEW)
 
@@ -151,7 +152,7 @@ class Calculator:
     def create_operator_buttons(self):
         i = 0
         for operator, symbol in self.operations.items():
-            button = tk.Button(self.buttons_frame, text=symbol, bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
+            button = tk.Button(self.buttons_frame, text=symbol, bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                                borderwidth=0, command=lambda x=operator: self.append_operator(x))
             button.grid(row=i, column=4, sticky=tk.NSEW)
             i += 1
@@ -163,7 +164,7 @@ class Calculator:
         self.update_total_label()
 
     def create_clear_button(self):
-        button = tk.Button(self.buttons_frame, text="C", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button = tk.Button(self.buttons_frame, text="CE", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.clear)
         button.grid(row=0, column=1, sticky=tk.NSEW)
 
@@ -173,7 +174,7 @@ class Calculator:
         self.update_label()
 
     def create_square_button(self):
-        button = tk.Button(self.buttons_frame, text="x\u00b2", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button = tk.Button(self.buttons_frame, text="x\u00b2", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.square)
         button.grid(row=0, column=2, sticky=tk.NSEW)
 
@@ -183,7 +184,7 @@ class Calculator:
         self.update_label()
 
     def create_sqrt_button(self):
-        button = tk.Button(self.buttons_frame, text="\u221ax", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button = tk.Button(self.buttons_frame, text="\u221ax", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.sqrt)
         button.grid(row=0, column=3, sticky=tk.NSEW)
 
@@ -194,7 +195,7 @@ class Calculator:
         self.update_label()
     def create_log_button(self):
         global button1 
-        button1= tk.Button(self.buttons_frame, text="log", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button1= tk.Button(self.buttons_frame, text="log", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.log)
         button1.grid(row=0, column=5, sticky=tk.NSEW)
 
@@ -204,7 +205,7 @@ class Calculator:
         self.update_label()
     def create_loge_button(self):
         global button2
-        button2 = tk.Button(self.buttons_frame, text="ln", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button2 = tk.Button(self.buttons_frame, text="ln", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.loge)
         button2.grid(row=1, column=5, sticky=tk.NSEW)
 
@@ -214,7 +215,7 @@ class Calculator:
         self.update_label()
     def create_inv_button(self):
         global button3
-        button3 = tk.Button(self.buttons_frame, text="inv", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button3 = tk.Button(self.buttons_frame, text="inv", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.inv)
         button3.grid(row=2, column=5, sticky=tk.NSEW)
 
@@ -224,7 +225,7 @@ class Calculator:
         self.update_label()
     def create_mod_button(self):
         global button4
-        button4 = tk.Button(self.buttons_frame, text="| |", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button4 = tk.Button(self.buttons_frame, text="| |", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.mod)
         button4.grid(row=3, column=5, sticky=tk.NSEW)
 
@@ -234,7 +235,7 @@ class Calculator:
         self.update_label()
     def create_neg_button(self):
         global button5
-        button5 = tk.Button(self.buttons_frame, text="±", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button5 = tk.Button(self.buttons_frame, text="±", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.negate)
         button5.grid(row=4, column=5, sticky=tk.NSEW)
 
@@ -245,7 +246,7 @@ class Calculator:
         self.update_label()
     def create_sin_button(self):
         global button6
-        button6 = tk.Button(self.buttons_frame, text="sin", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button6 = tk.Button(self.buttons_frame, text="sin", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.sin)
         button6.grid(row=0, column=6, sticky=tk.NSEW)
 
@@ -256,7 +257,7 @@ class Calculator:
         self.update_label()
     def create_cos_button(self):
         global button7
-        button7 = tk.Button(self.buttons_frame, text="cos", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button7 = tk.Button(self.buttons_frame, text="cos", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.cos)
         button7.grid(row=1, column=6, sticky=tk.NSEW)
     
@@ -267,7 +268,7 @@ class Calculator:
         self.update_label()
     def create_tan_button(self):
         global button8
-        button8= tk.Button(self.buttons_frame, text="tan", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button8= tk.Button(self.buttons_frame, text="tan", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.tan)
         button8.grid(row=2, column=6, sticky=tk.NSEW)
 
@@ -277,7 +278,7 @@ class Calculator:
         self.update_label()
     def create_e_button(self):
         global button9
-        button9 = tk.Button(self.buttons_frame, text="𝑒", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button9 = tk.Button(self.buttons_frame, text="𝑒", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.e)
         button9.grid(row=3, column=6, sticky=tk.NSEW)
 
@@ -287,7 +288,7 @@ class Calculator:
         self.update_label()
     def create_pi_button(self):
         global button0
-        button0 = tk.Button(self.buttons_frame, text="π", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=24,
+        button0 = tk.Button(self.buttons_frame, text="π", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,padx=28,
                            borderwidth=0, command=self.pi)
         button0.grid(row=4, column=6, sticky=tk.NSEW)
 
